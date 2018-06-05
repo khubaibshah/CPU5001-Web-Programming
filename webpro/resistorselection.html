@@ -1,0 +1,263 @@
+
+<html>
+
+
+
+<head>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8""/>
+<link href="resistorcss.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="new1.js">
+</script>
+  
+</head>
+
+
+
+<div id="container">
+	<div id="header">
+	<center>
+		<h1>
+			Resistors
+		</h1>
+		</center>
+	</div>
+	<div id="navigation">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="4bandresistors.html">About</a></li>
+            <li><a href="resistorselection.html">Resistorselection</a></li>
+			<li><a href="Self evaluation.html">Self evaluation</a></li>
+			
+            
+		</ul>
+	</div>
+
+<center>
+
+
+<div id="content">
+
+<h2>
+Resistor color coded viewer
+</h2>
+<!-- canvas for line left side of main canvas -->
+
+
+ <canvas id="myCanvas" width="200" height="100"
+style="border:0px solid #d3d3d3;">
+</canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.moveTo(0,50);
+ctx.lineTo(500,50);
+ctx.stroke();
+
+</script>
+<!-- main canvas -->
+
+      <canvas id="canvas" width="400 " height="100 " style="border:1px solid #c3c3c3; border-radius: 15px" >
+          </canvas>
+		  <!-- canvas for line right side of main canvas -->
+		 <canvas id="myCanvas2" width="200" height="100"
+style="border:0px solid #d3d3d3;">
+
+</canvas>
+<br>
+</br>
+
+<script>
+
+var canvas = document.getElementById("myCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.moveTo(0,50);
+ctx.lineTo(500,50);
+ctx.stroke();
+
+</script>
+<h3>
+Choose the preffered colours of each band, and the resistance value will appear below
+</h3>
+
+		  <div align="center">
+		  
+<table>
+<!-- the menu names -->
+<tr align="center">
+<td>Band 1</td>
+<td>Band 2</td>
+<td>Band 3</td>
+<td>
+</td>
+<td>Band 4</td>
+</tr>
+    
+<tr>
+
+
+
+  <!--setting up the drop down menus -->
+  
+<form name="colorSelect" >
+<td>
+  
+<select name="band1" value="1" onChange="calcResistance(this)" style="width: 150px; color: white; background: #583030;">
+
+
+<option value="0" style="color: white; background: black;">Black (0)</option>
+<option value="1" style="color: white; background: #583030;" selected>Brown (1)</option>
+<option value="2" style="color: white; background: red;">Red (2)</option>
+<option value="3" style="color: black; background: orange;">Orange (3)</option>
+<option value="4" style="color: black; background: yellow;">Yellow (4)</option>
+<option value="5" style="color: white; background: green;">Green (5)</option>
+<option value="6" style="color: white; background: blue;">Blue (6)</option>
+<option value="7" style="color: white; background: purple;">Violet (7)</option>
+<option value="8" style="color: white; background: gray;">Gray (8)</option>
+<option value="9" style="color: black; background: white;">White (9)</option>
+
+</select>
+</td>
+
+
+
+<td>
+<select name="band2" value="0" onChange="calcResistance(this)" style="width: 150px; color: white; background: black;">
+<option value="0" style="color: white; background: black;" selected>Black (0)</option>
+<option value="1" style="color: white; background: #583030;">Brown (1)</option>
+<option value="2" style="color: white; background: red;">Red (2)</option>
+<option value="3" style="color: black; background: orange;">Orange (3)</option>
+<option value="4" style="color: black; background: yellow;">Yellow (4)</option>
+<option value="5" style="color: white; background: green;">Green (5)</option>
+<option value="6" style="color: white; background: blue;">Blue (6)</option>
+<option value="7" style="color: white; background: purple;">Violet (7)</option>
+<option value="8" style="color: white; background: gray;">Gray (8)</option>
+<option value="9" style="color: black; background: white;">White (9)</option>
+
+</select>
+</td>
+
+
+<td>
+<select name="band3" value="2" onChange="calcResistance(this)" style="width: 150px; color: white; background: red;">
+<option value="0" style="color: white; background: black;" selected>Black (1)</option>
+<option value="1" style="color: white; background: #583030;">Brown (10)</option>
+<option value="2" style="color: white; background: red;" selected>Red (100)</option>
+<option value="3" style="color: black; background: orange;">Orange (1k)</option>
+<option value="4" style="color: black; background: yellow;">Yellow (10k)</option>
+<option value="5" style="color: white; background: green;">Green (100k)</option>
+<option value="6" style="color: white; background: blue;">Blue (1M)</option>
+<option value="7" style="color: white; background: purple;">Violet (10M)</option>
+<option value="8" style="color: white; background: gray;">Gray (100M)</option>
+<option value="9" style="color: black; background: white;">White (1G)</option>
+
+</select>
+
+
+
+</td>
+
+<!-- no break space to space the tolerance band menu from the 3 bands for better understanding  -->
+
+<td>&nbsp;&nbsp;&nbsp;</td>
+
+<td>
+<select name="band4" value="0" onChange="calcResistance(this)" style="width: 150px; color: black; background: gold; size:5;">
+<option value="10" style="color: black; background: gold;">Gold (&plusmn; 5%)</option>
+<option value="11" style="color: black; background: silver;">Silver (&plusmn; 10%)</option>
+
+</select>
+</td>
+</tr>
+
+
+<tr>
+
+<font size="9">
+<center>
+<!-- defineing the number of columns in menu span and aligning it to rhe right -->
+
+<td colspan="2" align="right">
+
+<br> </br>
+
+<h4>Resistance:&nbsp;&nbsp;</h4>
+</td>
+<td colspan="3" align="left">
+<!-- output negative and positive values &ohm; &plusmn -->
+
+<br> </br>
+<text id="resistorValue">1,000&ohm; &plusmn;5%</text>
+
+</td>
+</center>
+</font>
+
+</tr>
+
+</table>
+</div>
+<h5> 
+Once you have choosen your bands and now know your resistor value, go ahead and use the options below to get a physical view off the Resistor you have choose!
+</h5>
+<!-- setting up second set of drop down menus linking to the physical view -->
+          <select id="colors" style="width: 150px;" onchange="changeColor()">
+		  <option > - </option>
+            <option value="0">Black</option>
+            <option value="1">Brown</option>
+            <option value="2">Red</option>
+            <option value="3">orange</option>
+            <option value="4">Yellow</option>
+            <option value="5">Blue</option>
+            <option value="6">Violet</option>
+            <option value="7">Grey</option>
+          </select>
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+ <select id="second" style="width: 150px;" onchange="changeColor2()">
+ <option > - </option>
+            <option value="0">Black</option>
+            <option value="1">Brown</option>
+            <option value="2">Red</option>
+            <option value="3">orange</option>
+            <option value="4">Yellow</option>
+            <option value="5">Blue</option>
+            <option value="6">Violet</option>
+            <option value="7">Grey</option>
+          </select>
+		  
+		  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		  
+		  <select id="third" style="width: 150px;" onchange="changeColor3()">
+		 <option > - </option>
+            <option value="0">Black</option>
+            <option value="1">Brown</option>
+            <option value="2">Red</option>
+            <option value="3">orange</option>
+            <option value="4">Yellow</option>
+            <option value="5">Blue</option>
+            <option value="6">Violet</option>
+            <option value="7">Grey</option>
+          </select>
+		  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		  <select id="fourth" style="width: 150px;" onchange="changeColor4()">
+		  <option > - </option>
+            <option value="0">gold</option>
+            <option value="1">silver</option>
+          </select>
+		  
+
+
+
+      </div>
+
+
+	<div id="footer">
+		Copyright Resistors
+		</div>
+</div>
+</html>

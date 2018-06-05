@@ -1,0 +1,116 @@
+
+
+
+
+<head>
+ 
+
+
+
+<link href="resistorcss.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+
+<body>
+ 
+
+<div id="container">
+	<div id="header">
+
+		<center>
+		<h1>
+			Resistors
+		</h1>
+		</center>
+	</div>
+	<div id="navigation">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="4bandresistors.html">About</a></li>
+            <li><a href="resistorselection.html">Resistorselection</a></li>
+			<li><a href="Self evaluation.html">Self evaluation</a></li>
+			
+            
+		</ul>
+	</div>
+	<center>
+	<div id="content">
+	<h2>
+			4 band resistors
+		</h2>
+		<p>
+		
+		<br>
+		The first and second band represent the numerical value of the resistor, and the color of the third band specify the power-of-ten multiplier. The color bands are always read from left to right starting with the side that has a band closer to the edge.
+</br>
+<br>
+For carbon-composition and carbon film resistors, the common tolerances are 5%, 10%, and 20%, indicating that the actual value of the resistor can vary from the nominal value by +-5%, +-10% and +-20%. If the band is gold, it specifies a 5% tolerance; silver specifies a 10% tolerance; if no band is present, the tolerance is 20%.</br>
+		The number of bands is important because the decoding changes based upon the number of color bands.
+		</p>
+
+
+</body>
+		     <select name="cmbitems" id="cmbitems">
+		   <option selected> - </option>	  
+    <option value="0" style="color: white; background: black;">Black</option>
+<option value="1" style="color: white; background: #583030;" >Brown</option>
+<option value="2" style="color: white; background: red;">Red </option>
+<option value="3" style="color: black; background: orange;">Orange</option>
+<option value="4" style="color: black; background: yellow;">Yellow</option>
+<option value="5" style="color: white; background: green;">Green</option>
+<option value="6" style="color: white; background: blue;">Blue</option>
+<option value="7" style="color: white; background: purple;">Violet</option>
+<option value="8" style="color: white; background: gray;">Gray</option>
+<option value="9" style="color: black; background: white;">White</option>
+</select>
+
+<input  type="text" name="txtprice" id="txtprice" onClick="checkPrice()">
+<script>
+    var select = document.getElementById('cmbitems');
+var input = document.getElementById('txtprice');
+select.onchange = function() {
+    input.value = select.value;
+	
+}
+</script>
+<p>
+There are three common types: 4 band, 5 band, and 6 band resistors. For the 4 band resistor:
+</p>
+
+			Band 1 : First significant digit
+			<br></br>
+			
+            Band 2 :  Second significant digit
+			<br>
+			</br>
+
+            Band 3 :  Multiplier
+
+			<br>
+			</br>
+            Band 4 :  Tolerance
+		<br>
+			</br>
+			
+        <h2>
+		Resistance Value
+		</h2>
+        
+		<br>The first 4 bands make up the resistances values. The first 2 bands make up the significant digits</br>
+		<br>a visual representaion of the 4 band resistor colours
+		</br>
+		<br>
+		
+		<img style="float:center; margin: 0px 0px 15px 15px;" src="http://www.digikey.com/-/media/Images/Marketing/Resources/Calculators/resistor-color-chart.jpg?la=en-GB&ts=72364a89-2139-476a-8a54-8d78dacd29ff" />
+		</br>
+		
+		</body>
+
+	</div>
+	</center>
+	<div id="footer">
+		Copyright Resistors
+		</div>
+</div>
